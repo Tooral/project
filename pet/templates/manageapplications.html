@@ -1,0 +1,47 @@
+{% extends 'myaccount.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block app %}
+
+<div class="container" style="width: 90%; ">
+    <div class="row">
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2> Manage <b> Applicants</b></h2>
+                <br>
+                <!-- Creating a table to display database-->
+                <table class="table table-hover table-light text-center tablehover">
+                    <tr>
+                        <th>Applicant ID</th>
+                        <th>Pet Name</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Employment</th>
+                        <th>Reason</th>
+                        <th>DOB</th>
+                        <th>Status</th>
+                        <th>Date of Application</th>
+                        <th>Admin</th>
+                    </tr>
+                    <!-- FOR LOOP TO LIST ALL APPLICANTS -->
+                    {% for applicant in allApplicants %}
+                    <tr>
+                        <td> {{ applicant['id'] }} </td>
+                        <td> {{ single_pet['pname'] }} </td>
+                        <td> {{ applicant['name'] }} </td>
+                        <td> {{ applicant['phone'] }}</td>
+                        <td> {{ applicant['employment'] }} </td>
+                        <td> {{ applicant['reason'] }} </td>
+                        <td> {{ applicant['dob'] }} </td>
+                        <td> {{ applicant['status'] }} </td>
+                        <td> {{ applicant['dateofapplication'] }} </td>
+                        <td> {{ applicant['admin'] }} </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+         </div>
+      </div>
+</div>
+{% endblock %}

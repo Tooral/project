@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<!-- Print birthday announcement if it's the pets birthday today -->
+{% if isBirthdayToday == True %}
+  <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+    <h5><strong>Happy {{petAge[0]}}th Birthday {{single_pet['pname']}}!</strong></h5>
+    <button type="button" class="btn-close float-end" data-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endif %}
+<div>
+    {% if single_pet['status'] == 'pre-adopted' %}
+    <div class="d-flex justify-content-center">
+        <p> <b> {{ single_pet['pname'] }} is pre-adopted. <br> </b>However, you can still apply to adopt her in case other applications fall through! </p>
+    </div>
+    {% endif %}
+</div>
+        <div class="row justify-content-md-center">{% if single_pet %}
+            <div class="col">
+                 <h3 class="m-2 float-end text-sm-left" style="padding: 20px 0;">{{ single_pet['pname'] }}</h3>
+            </div>
+            <div class="col">
+                 <h3 class="m-2 float-start text-sm-left" style="padding: 20px 0;"> Profile </h3>
+
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div>
+                <div class="card">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlNyI5Bbsl1vq1BQjH9XA-Z4j0Kkk0cEpAnA&usqp=CAU" class="img rounded mx-auto d-block" alt="pet image" style="padding: 30px 10px; ">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body" style="padding: 20px; ">
+                            <ul class="list-group py-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class=""><b>Name</b>: {{ single_pet['pname'] }}</div>
+                              </div>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class=""><b>Type(cat,dog,other)</b>: {{ single_pet['type'] }}</div>
+                              </div>
+                            <li class="list-group-item justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class=""><b>Sex</b>: {{ single_pet['sex'] }}</div>
+                                </div>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class=""><b>Date of Birth</b>: {{ single_pet['dob'] }} </div>
+                                </div>
+
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class=""><b>Date of Intake</b>: {{ single_pet['dateofintake'] }}</div>
+                                    </div>
+                              </li>
+
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class=""> <b>Description</b>: {{ single_pet['description'] }}</div>
+                                </div>
+                              </li>
+                          </ul>
+                            {% endif %}
+                        </div>
+                      </div>
+                        <a class="btn btn-warning btn-xs editbtn" href="{{ url_for('adopt', pid=single_pet['pid']) }} "> Adopt Me </a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+{% endblock %}
